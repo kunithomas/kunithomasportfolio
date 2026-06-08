@@ -1,1 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuni Thomas — Operations Leader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --black: #0a0a0a;
+    --white: #f7f5f0;
+    --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --mid: #2a2a2a;
+    --muted: #888;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+
+  .hero-name span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-statement {
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: rgba(247,245,240,0.65);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--gold);
+    color: var(--black);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 0.5px solid var(--border);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-line {
+    position: absolute;
+    right: 4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 1s;
+  }
+
+  .hero-stat {
+    text-align: right;
+  }
+
+  .hero-stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+  }
+
+  .hero-divider {
+    width: 0.5px;
+    height: 40px;
+    background: var(--border);
+    margin-left: auto;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--white);
+    margin-bottom: 3rem;
+    max-width: 600px;
+  }
+
+  /* STORY */
+  .story { border-top: 0.5px solid var(--border); }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .story-body p {
+    font-size: 1rem;
+    color: rgba(247,245,240,0.7);
+    line-height: 1.9;
+    margin-bottom: 1.25rem;
+  }
+
+  .story-body p strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: 1rem;
+  }
+
+  .credential {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .credential-year {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    min-width: 40px;
+  }
+
+  .credential-org {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .credential-role {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* IMPACT STORIES */
+  .impact { background: #0f0f0f; border-top: 0.5px solid var(--border); }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 1rem;
+  }
+
+  .impact-card {
+    background: #0f0f0f;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .impact-card:hover { background: #141414; }
+
+  .impact-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+  }
+
+  .impact-title {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+  }
+
+  .impact-desc {
+    font-size: 0.9rem;
+    color: rgba(247,245,240,0.6);
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+  }
+
+  .impact-result {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    padding-top: 1rem;
+    border-top: 0.5px solid var(--border);
+  }
+
+  /* EXPERTISE */
+  .expertise { border-top: 0.5px solid var(--border); }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .expertise-item {
+    background: var(--black);
+    padding: 2rem;
+  }
+
+  .expertise-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .expertise-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .expertise-bar {
+    margin-top: 1rem;
+    height: 1px;
+    background: var(--border);
+    position: relative;
+  }
+
+  .expertise-fill {
+    position: absolute;
+    top: 0; left: 0;
+    height: 100%;
+    background: var(--gold);
+  }
+
+  /* HOW I WORK */
+  .how-i-work { border-top: 0.5px solid var(--border); background: #0a0a0a; }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 1rem;
+  }
+
+  .principle-card {
+    background: var(--black);
+    padding: 2.5rem 2rem;
+  }
+
+  .principle-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .principle-title {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .principle-body {
+    font-size: 0.9rem;
+    color: rgba(247,245,240,0.6);
+    line-height: 1.8;
+  }
+
+  /* LOOKING FOR */
+  .looking-for { border-top: 0.5px solid var(--border); background: #0f0f0f; }
+
+  .looking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .looking-statement {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  .looking-statement em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .looking-sub {
+    font-size: 0.9rem;
+    color: rgba(247,245,240,0.55);
+    line-height: 1.8;
+  }
+
+  .looking-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .looking-tag {
+    background: #0f0f0f;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .looking-tag-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .looking-tag-value {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  @media (max-width: 900px) {
+    .principles-grid { grid-template-columns: 1fr; }
+    .looking-grid { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+
+  .contact {
+    border-top: 0.5px solid var(--border);
+    text-align: center;
+  }
+
+  .contact .section-title { margin: 0 auto 1rem; }
+
+  .contact-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 0.5px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1.25rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    .hero { padding: 7rem 2rem 4rem; }
+    .hero-line { display: none; }
+    section { padding: 4rem 2rem; }
+    .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .impact-grid { grid-template-columns: 1fr; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-name { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Kuni Thomas</a>
+  <ul class="nav-links">
+    <li><a href="#story">About</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#how-i-work">How I Work</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#looking-for">Open To</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-eyebrow">Operations Leader · Fintech & Financial Services</p>
+    <h1 class="hero-name">Kuni<br><span>Thomas</span></h1>
+    <p class="hero-statement">I build the systems, teams, and processes that turn operational chaos into compliance, scale, and performance — across fintech and regulated banking environments.</p>
+    <div class="hero-cta">
+      <a href="#impact" class="btn-primary">See My Work</a>
+      <a href="https://www.linkedin.com/in/kuni-thomas-331202bb" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="hero-line">
+    <div class="hero-stat">
+      <div class="hero-stat-num">8</div>
+      <div class="hero-stat-label">Years Leading</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">11K+</div>
+      <div class="hero-stat-label">Cases Remediated</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">98%</div>
+      <div class="hero-stat-label">Compliance Rate</div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+  <div class="story-grid">
+    <div>
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title reveal">Operations isn't overhead. It's the engine.</h2>
+      <div class="story-body reveal">
+        <p>I'm an operations leader with 8 years of experience building high-performing teams at the intersection of <strong>fintech speed and regulated banking rigor</strong>. My career has taken me from Wells Fargo's branch operations to the fast-moving risk and escalations environments of Cash App and Afterpay.</p>
+        <p>What sets me apart isn't just that I manage operations — it's that I <strong>investigate what's broken, design what should replace it, and build the team capable of executing it</strong>. I've led regulatory remediations under tight timelines, designed cross-functional compliance frameworks, and launched entirely new operational channels from scratch.</p>
+        <p>I'm energized by complexity. When a system fails, a regulation shifts, or a product creates unintended customer harm — I'm the person who runs toward it.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label">Career Timeline</p>
+      <div class="credentials">
+        <div class="credential">
+          <div class="credential-year">2023–2026</div>
+          <div>
+            <div class="credential-org">Block Inc — Afterpay</div>
+            <div class="credential-role">Escalations Operations Manager</div>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-year">2021–2023</div>
+          <div>
+            <div class="credential-org">Block Inc — Cash App</div>
+            <div class="credential-role">Risk Operations Lead</div>
+          </div>
+        </div>
+        <div class="credential">
+          <div class="credential-year">2018–2021</div>
+          <div>
+            <div class="credential-org">Wells Fargo Bank</div>
+            <div class="credential-role">Service Manager II</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <p class="section-label">Signature Work</p>
+  <h2 class="section-title reveal">Six stories that define how I operate</h2>
+
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-number">01</div>
+      <div class="impact-title">The Rescue — REG-E Remediation</div>
+      <p class="impact-desc">Inherited a critical regulatory backlog of 11,815 Regulation E cases sitting out of SLA at Cash App. Designed and communicated a full remediation plan to senior leadership, built an efficient execution platform for the team, and partnered with data analysts to create a real-time tracking dashboard.</p>
+      <p class="impact-desc">Led a team of 5 through full resolution in under 2 weeks — restoring regulatory compliance and preventing potential audit fines.</p>
+      <div class="impact-result">↑ Full SLA compliance restored · 11,815 cases closed · 2-week turnaround</div>
+    </div>
+
+    <div class="impact-card reveal">
+      <div class="impact-number">02</div>
+      <div class="impact-title">The Build — ATO Messaging Channel</div>
+      <p class="impact-desc">Identified a critical gap in how Cash App handled Account Takeover (ATO) claims and built an entirely new messaging channel from the ground up — my initiative from concept to launch. Navigated complex technical constraints to maintain chat functionality while executing risk actions.</p>
+      <p class="impact-desc">Partnered with Compliance, Operations Engineering, and cross-functional stakeholders to design a workflow that protected customers without disrupting resolution speed.</p>
+      <div class="impact-result">↓ AHT reduced from 24 hours to 5 minutes · End-to-end ownership</div>
+    </div>
+
+    <div class="impact-card reveal">
+      <div class="impact-number">03</div>
+      <div class="impact-title">The Investigate & Fix — Complaint Routing Failure</div>
+      <p class="impact-desc">Discovered a systemic complaint-routing failure at Afterpay by running SQL queries across complaint records — uncovering ~1,300 unresolved complaints sitting hidden in frontline inboxes, many already out of SLA and at risk of regulatory fines during external audits.</p>
+      <p class="impact-desc">Mobilized immediate remediation, then partnered with Engineering and Content to design a durable framework preventing recurrence — including new frontline guidance and operational safeguards.</p>
+      <div class="impact-result">↑ 1,300 complaints resolved · Audit risk eliminated · Durable compliance framework built</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="expertise" id="expertise">
+  <p class="section-label">Core Competencies</p>
+  <h2 class="section-title reveal">What I bring to every role</h2>
+
+  <div class="expertise-grid reveal">
+    <div class="expertise-item">
+      <div class="expertise-name">Operations Management</div>
+      <div class="expertise-desc">End-to-end ownership of performance, quality, and compliance outcomes across complex, multi-system environments.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:95%"></div></div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-name">Regulatory Compliance</div>
+      <div class="expertise-desc">Deep experience with REG-E, REG-Z, BNPL obligations, SAR filings, IDR handling, and external audit support.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:92%"></div></div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-name">Team Leadership & Development</div>
+      <div class="expertise-desc">Building, coaching, and scaling teams — from frontline agents to DRI-based ownership models that decentralize accountability.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:90%"></div></div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-name">Risk & Fraud Operations</div>
+      <div class="expertise-desc">Hands-on experience in ATO, complaint escalations, dual-account conflict resolution, and high-risk incident leadership.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:88%"></div></div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-name">Process Design & Systems Thinking</div>
+      <div class="expertise-desc">Designing decision matrices, escalation frameworks, and knowledge infrastructure that scale beyond individual contributors.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:93%"></div></div>
+    </div>
+    <div class="expertise-item">
+      <div class="expertise-name">Cross-Functional Leadership</div>
+      <div class="expertise-desc">Proven ability to drive alignment across Legal, Compliance, Engineering, Product, and Finance in high-stakes environments.</div>
+      <div class="expertise-bar"><div class="expertise-fill" style="width:89%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MORE IMPACT STORIES -->
+<section class="impact" style="padding-top:2rem;">
+  <div class="impact-grid">
+    <div class="impact-card reveal">
+      <div class="impact-number">04</div>
+      <div class="impact-title">The Launch — OC Voice Channel Stabilization</div>
+      <p class="impact-desc">Stepped into a chaotic go-live for the Online Checkout Voice channel, identifying critical gaps on day one — missing forecasting, no Spanish support, broken transfer rules, and unrouted complaint acknowledgments.</p>
+      <p class="impact-desc">Mobilized five Probe teams, coached frontline agents in real-time, and enabled Team Leads with reporting access and KPI interpretation to stabilize operations fast.</p>
+      <div class="impact-result">↓ Abandonment rate dropped from 6% to 2% · Stabilized in under 2 days</div>
+    </div>
+
+    <div class="impact-card reveal">
+      <div class="impact-number">05</div>
+      <div class="impact-title">The Train — REG-Z BNPL Compliance Uplift</div>
+      <p class="impact-desc">Spearheaded a comprehensive training initiative for the complaints team on Regulation Z obligations specific to Buy Now, Pay Later products — an area with significant regulatory exposure. Developed detailed training materials and ran interactive workshops.</p>
+      <p class="impact-desc">Collaborated cross-functionally to integrate updated regulatory practices seamlessly into existing workflows, building a durable culture of compliance.</p>
+      <div class="impact-result">↑ 98% SLA compliance rate achieved · Billing disputes and infractions significantly reduced</div>
+    </div>
+
+    <div class="impact-card reveal">
+      <div class="impact-number">06</div>
+      <div class="impact-title">The Design — Dual-Account Decision Matrix</div>
+      <p class="impact-desc">Identified a growing customer friction issue where ~5% of consumers held two conflicting Afterpay accounts across Cash App and traditional Afterpay, causing order declines and elevated complaints. Designed a decision matrix framework from scratch to guide support teams through complex resolution paths.</p>
+      <p class="impact-desc">Navigated legal pushback on the original automated approach, pivoted to a policy-aligned consumer education model, and partnered with Legal, Compliance, Credit Risk, and Terms of Service to ship a durable solution.</p>
+      <div class="impact-result">↓ Frontline escalations projected to reduce by ~5% · Consistent resolution across ecosystem</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how-i-work" id="how-i-work">
+  <p class="section-label">Leadership Philosophy</p>
+  <h2 class="section-title reveal">How I show up — every time</h2>
+
+  <div class="principles-grid">
+    <div class="principle-card reveal">
+      <div class="principle-icon">01</div>
+      <div class="principle-title">When something breaks</div>
+      <p class="principle-body">I slow down before I act. Diagnosis before prescription. I run SQL queries, pull the data, map the failure, and understand the full scope before mobilizing a fix — because a fast wrong answer is worse than a measured right one.</p>
+    </div>
+
+    <div class="principle-card reveal">
+      <div class="principle-icon">02</div>
+      <div class="principle-title">How I develop my team</div>
+      <p class="principle-body">I look for the gaps — not to judge them, but to stretch people through them. I give my team ownership of problems just beyond their comfort zone, then stand close enough to catch them if they need it. That's how skills become strengths.</p>
+    </div>
+
+    <div class="principle-card reveal">
+      <div class="principle-icon">03</div>
+      <div class="principle-title">When I know ops is healthy</div>
+      <p class="principle-body">When the manual work is automated and the team has stopped firefighting long enough to start building. A healthy operation isn't quiet — it's intentional. The team's energy is pointed forward, not sideways.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I'M LOOKING FOR -->
+<section class="looking-for" id="looking-for">
+  <p class="section-label">What I'm Looking For</p>
+  <div class="looking-grid">
+    <div class="reveal">
+      <p class="looking-statement">I'm looking for a team that wants an operator who <em>builds</em>, not just one who manages.</p>
+      <p class="looking-sub">I thrive where there's complexity to untangle, a team to develop, and processes worth designing from scratch. Whether that's a fast-moving fintech or a large regulated institution, I'm drawn to environments where operations is treated as a strategic advantage — not a support function.</p>
+      <p class="looking-sub" style="margin-top:1rem;">I'm based in the Los Angeles area and open to remote, hybrid, or on-site roles.</p>
+    </div>
+
+    <div class="looking-tags reveal">
+      <div class="looking-tag">
+        <span class="looking-tag-label">Target Roles</span>
+        <span class="looking-tag-value">Operations Manager · Risk Ops · Trust & Safety</span>
+      </div>
+      <div class="looking-tag">
+        <span class="looking-tag-label">Industries</span>
+        <span class="looking-tag-value">Fintech · Payments · Financial Services</span>
+      </div>
+      <div class="looking-tag">
+        <span class="looking-tag-label">Company Stage</span>
+        <span class="looking-tag-value">Early-stage to large enterprise</span>
+      </div>
+      <div class="looking-tag">
+        <span class="looking-tag-label">Work Style</span>
+        <span class="looking-tag-value">Remote · Hybrid · On-site</span>
+      </div>
+      <div class="looking-tag">
+        <span class="looking-tag-label">Location</span>
+        <span class="looking-tag-value">Los Angeles Area, CA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Get In Touch</p>
+  <h2 class="section-title reveal">Let's talk about what you're building</h2>
+  <p class="contact-sub reveal">Open to Operations Manager, Risk Operations, and Trust & Safety leadership roles in fintech and financial services.</p>
+  <div class="contact-links reveal">
+    <a href="https://www.linkedin.com/in/kuni-thomas-331202bb" target="_blank" class="btn-primary">Connect on LinkedIn ↗</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Kuni Thomas</p>
+  <p>Operations Leader · Fintech & Financial Services</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
