@@ -31,7 +31,6 @@
     overflow-x: hidden;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -72,7 +71,6 @@
 
   .nav-links a:hover { color: var(--gold); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -115,10 +113,7 @@
     animation: fadeUp 0.8s ease forwards 0.4s;
   }
 
-  .hero-name span {
-    color: var(--gold);
-    font-style: italic;
-  }
+  .hero-name span { color: var(--gold); font-style: italic; }
 
   .hero-statement {
     font-size: 1.05rem;
@@ -181,9 +176,7 @@
     animation: fadeIn 1s ease forwards 1s;
   }
 
-  .hero-stat {
-    text-align: right;
-  }
+  .hero-stat { text-align: right; }
 
   .hero-stat-num {
     font-family: 'Cormorant Garamond', serif;
@@ -208,7 +201,6 @@
     margin-left: auto;
   }
 
-  /* SECTIONS */
   section { padding: 6rem 4rem; }
 
   .section-label {
@@ -229,7 +221,6 @@
     max-width: 600px;
   }
 
-  /* STORY */
   .story { border-top: 0.5px solid var(--border); }
 
   .story-grid {
@@ -246,10 +237,7 @@
     margin-bottom: 1.25rem;
   }
 
-  .story-body p strong {
-    color: var(--white);
-    font-weight: 500;
-  }
+  .story-body p strong { color: var(--white); font-weight: 500; }
 
   .credentials {
     display: flex;
@@ -270,7 +258,7 @@
     font-size: 0.65rem;
     letter-spacing: 0.1em;
     color: var(--gold);
-    min-width: 40px;
+    min-width: 60px;
   }
 
   .credential-org {
@@ -285,7 +273,6 @@
     margin-top: 2px;
   }
 
-  /* IMPACT STORIES */
   .impact { background: #0f0f0f; border-top: 0.5px solid var(--border); }
 
   .impact-grid {
@@ -316,14 +303,12 @@
   }
 
   .impact-title {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--white);
-    letter-spacing: 0.04em;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
     font-size: 0.7rem;
+    font-weight: 500;
     letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 1rem;
   }
 
   .impact-desc {
@@ -341,7 +326,6 @@
     border-top: 0.5px solid var(--border);
   }
 
-  /* EXPERTISE */
   .expertise { border-top: 0.5px solid var(--border); }
 
   .expertise-grid {
@@ -383,7 +367,6 @@
     background: var(--gold);
   }
 
-  /* HOW I WORK */
   .how-i-work { border-top: 0.5px solid var(--border); background: #0a0a0a; }
 
   .principles-grid {
@@ -424,7 +407,6 @@
     line-height: 1.8;
   }
 
-  /* LOOKING FOR */
   .looking-for { border-top: 0.5px solid var(--border); background: #0f0f0f; }
 
   .looking-grid {
@@ -443,10 +425,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .looking-statement em {
-    color: var(--gold);
-    font-style: italic;
-  }
+  .looking-statement em { color: var(--gold); font-style: italic; }
 
   .looking-sub {
     font-size: 0.9rem;
@@ -482,12 +461,6 @@
     color: var(--white);
   }
 
-  @media (max-width: 900px) {
-    .principles-grid { grid-template-columns: 1fr; }
-    .looking-grid { grid-template-columns: 1fr; gap: 3rem; }
-  }
-
-
   .contact {
     border-top: 0.5px solid var(--border);
     text-align: center;
@@ -508,7 +481,6 @@
     flex-wrap: wrap;
   }
 
-  /* FOOTER */
   footer {
     padding: 2rem 4rem;
     border-top: 0.5px solid var(--border);
@@ -524,7 +496,6 @@
     text-transform: uppercase;
   }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -541,12 +512,8 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.visible { opacity: 1; transform: none; }
 
-  /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 1.25rem 2rem; }
     .nav-links { gap: 1.5rem; }
@@ -556,6 +523,8 @@
     .story-grid { grid-template-columns: 1fr; gap: 3rem; }
     .impact-grid { grid-template-columns: 1fr; }
     .expertise-grid { grid-template-columns: 1fr; }
+    .principles-grid { grid-template-columns: 1fr; }
+    .looking-grid { grid-template-columns: 1fr; gap: 3rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
 
@@ -590,7 +559,6 @@
       <a href="https://www.linkedin.com/in/kuni-thomas-331202bb" target="_blank" class="btn-secondary">LinkedIn ↗</a>
     </div>
   </div>
-
   <div class="hero-line">
     <div class="hero-stat">
       <div class="hero-stat-num">8</div>
@@ -621,7 +589,6 @@
         <p>I'm energized by complexity. When a system fails, a regulation shifts, or a product creates unintended customer harm — I'm the person who runs toward it.</p>
       </div>
     </div>
-
     <div class="reveal">
       <p class="section-label">Career Timeline</p>
       <div class="credentials">
@@ -655,7 +622,6 @@
 <section class="impact" id="impact">
   <p class="section-label">Signature Work</p>
   <h2 class="section-title reveal">Three stories that define how I operate</h2>
-
   <div class="impact-grid">
     <div class="impact-card reveal">
       <div class="impact-number">01</div>
@@ -664,15 +630,42 @@
       <p class="impact-desc">Led a team of 5 through full resolution in under 2 weeks — restoring regulatory compliance and preventing potential audit fines.</p>
       <div class="impact-result">↑ Full SLA compliance restored · 11,815 cases closed · 2-week turnaround</div>
     </div>
-
-    
-
     <div class="impact-card reveal">
       <div class="impact-number">02</div>
       <div class="impact-title">The Investigate & Fix — Complaint Routing Failure</div>
       <p class="impact-desc">Discovered a systemic complaint-routing failure at Afterpay by running SQL queries across complaint records — uncovering ~1,300 unresolved complaints sitting hidden in frontline inboxes, many already out of SLA and at risk of regulatory fines during external audits.</p>
       <p class="impact-desc">Mobilized immediate remediation, then partnered with Engineering and Content to design a durable framework preventing recurrence — including new frontline guidance and operational safeguards.</p>
       <div class="impact-result">↑ 1,300 complaints resolved · Audit risk eliminated · Durable compliance framework built</div>
+    </div>
+    <div class="impact-card reveal">
+      <div class="impact-number">03</div>
+      <div class="impact-title">The Train — REG-Z BNPL Compliance Uplift</div>
+      <p class="impact-desc">Spearheaded a comprehensive training initiative for the complaints team on Regulation Z obligations specific to Buy Now, Pay Later products — an area with significant regulatory exposure. Developed detailed training materials and ran interactive workshops.</p>
+      <p class="impact-desc">Collaborated cross-functionally to integrate updated regulatory practices seamlessly into existing workflows, building a durable culture of compliance.</p>
+      <div class="impact-result">↑ 98% SLA compliance rate achieved · Billing disputes and infractions significantly reduced</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW I WORK -->
+<section class="how-i-work" id="how-i-work">
+  <p class="section-label">Leadership Philosophy</p>
+  <h2 class="section-title reveal">How I show up — every time</h2>
+  <div class="principles-grid">
+    <div class="principle-card reveal">
+      <div class="principle-icon">01</div>
+      <div class="principle-title">When something breaks</div>
+      <p class="principle-body">I slow down before I act. Diagnosis before prescription. I run SQL queries, pull the data, map the failure, and understand the full scope before mobilizing a fix — because a fast wrong answer is worse than a measured right one.</p>
+    </div>
+    <div class="principle-card reveal">
+      <div class="principle-icon">02</div>
+      <div class="principle-title">How I develop my team</div>
+      <p class="principle-body">I look for the gaps — not to judge them, but to stretch people through them. I give my team ownership of problems just beyond their comfort zone, then stand close enough to catch them if they need it. That's how skills become strengths.</p>
+    </div>
+    <div class="principle-card reveal">
+      <div class="principle-icon">03</div>
+      <div class="principle-title">When I know ops is healthy</div>
+      <p class="principle-body">When the manual work is automated and the team has stopped firefighting long enough to start building. A healthy operation isn't quiet — it's intentional. The team's energy is pointed forward, not sideways.</p>
     </div>
   </div>
 </section>
@@ -681,7 +674,6 @@
 <section class="expertise" id="expertise">
   <p class="section-label">Core Competencies</p>
   <h2 class="section-title reveal">What I bring to every role</h2>
-
   <div class="expertise-grid reveal">
     <div class="expertise-item">
       <div class="expertise-name">Operations Management</div>
@@ -716,47 +708,6 @@
   </div>
 </section>
 
-<!-- MORE IMPACT STORIES -->
-
-
-    <div class="impact-card reveal">
-      <div class="impact-number">03</div>
-      <div class="impact-title">The Train — REG-Z BNPL Compliance Uplift</div>
-      <p class="impact-desc">Spearheaded a comprehensive training initiative for the complaints team on Regulation Z obligations specific to Buy Now, Pay Later products — an area with significant regulatory exposure. Developed detailed training materials and ran interactive workshops.</p>
-      <p class="impact-desc">Collaborated cross-functionally to integrate updated regulatory practices seamlessly into existing workflows, building a durable culture of compliance.</p>
-      <div class="impact-result">↑ 98% SLA compliance rate achieved · Billing disputes and infractions significantly reduced</div>
-    </div>
- </div>
-
-  
-</section>
-
-<!-- HOW I WORK -->
-<section class="how-i-work" id="how-i-work">
-  <p class="section-label">Leadership Philosophy</p>
-  <h2 class="section-title reveal">How I show up — every time</h2>
-
-  <div class="principles-grid">
-    <div class="principle-card reveal">
-      <div class="principle-icon">01</div>
-      <div class="principle-title">When something breaks</div>
-      <p class="principle-body">I slow down before I act. Diagnosis before prescription. I run SQL queries, pull the data, map the failure, and understand the full scope before mobilizing a fix — because a fast wrong answer is worse than a measured right one.</p>
-    </div>
-
-    <div class="principle-card reveal">
-      <div class="principle-icon">02</div>
-      <div class="principle-title">How I develop my team</div>
-      <p class="principle-body">I look for the gaps — not to judge them, but to stretch people through them. I give my team ownership of problems just beyond their comfort zone, then stand close enough to catch them if they need it. That's how skills become strengths.</p>
-    </div>
-
-    <div class="principle-card reveal">
-      <div class="principle-icon">02</div>
-      <div class="principle-title">When I know ops is healthy</div>
-      <p class="principle-body">When the manual work is automated and the team has stopped firefighting long enough to start building. A healthy operation isn't quiet — it's intentional. The team's energy is pointed forward, not sideways.</p>
-    </div>
-  </div>
-</section>
-
 <!-- WHAT I'M LOOKING FOR -->
 <section class="looking-for" id="looking-for">
   <p class="section-label">What I'm Looking For</p>
@@ -764,9 +715,8 @@
     <div class="reveal">
       <p class="looking-statement">I'm looking for a team that wants an operator who <em>builds</em>, not just one who manages.</p>
       <p class="looking-sub">I thrive where there's complexity to untangle, a team to develop, and processes worth designing from scratch. Whether that's a fast-moving fintech or a large regulated institution, I'm drawn to environments where operations is treated as a strategic advantage — not a support function.</p>
-      <p class="looking-sub" style="margin-top:1rem;">I'm based in the Los Angeles area and open to remote, hybrid, or on-site roles.</p>
+      <p class="looking-sub" style="margin-top:1rem;">Based in Southern California, open to remote, hybrid, or on-site roles.</p>
     </div>
-
     <div class="looking-tags reveal">
       <div class="looking-tag">
         <span class="looking-tag-label">Target Roles</span>
@@ -786,7 +736,7 @@
       </div>
       <div class="looking-tag">
         <span class="looking-tag-label">Location</span>
-        <span class="looking-tag-value">Los Angeles Area, CA</span>
+        <span class="looking-tag-value">Southern California</span>
       </div>
     </div>
   </div>
@@ -815,7 +765,6 @@
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
